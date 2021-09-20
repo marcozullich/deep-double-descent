@@ -64,6 +64,7 @@ if __name__ == "__main__":
     parser.add_argument("--label_noise_pct", type=float, default=0.0)
     parser.add_argument("--net", choices=["mlp", "cnn"], default="mlp")
     parser.add_argument("--dataset", choices=["mnist", "kmnist"], default="mnist")
+    parser.add_argument("--save_file", type=str, required=True, default="file where the dict with results will be stored")
     
     args = parser.parse_args()
 
