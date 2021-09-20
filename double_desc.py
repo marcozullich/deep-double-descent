@@ -54,7 +54,7 @@ class AsyncIterator:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--num_hidden", type=int, default=3)
-    parser.add_argument("--use_gpu", action="store_true", default=False)
+    parser.add_argument("--use_gpu", action="store_true", default=False, help="If no use_gpu or use_cpu specified, uses GPU if torch.cuda.is_available()")
     parser.add_argument("--use_cpu", action="store_true", default=False)
     parser.add_argument("--batch_size", type=int, default=128)
     parser.add_argument("--parallel_train", type=int, default=1, help="Number of nets that will train in parallel. Defaults to 1, implying no parallelism.")
@@ -92,4 +92,4 @@ if __name__ == "__main__":
         asyncio.run(async_group_train(async_widths, args.num_hidden+1, device, trainloader, testloader, result_dict=result_dict, num_epochs=args.num_epochs, net=args.net))
     
     #pickle.dump(open("results.pkl", "wb"), result_dict)
-    torch.save(result_dict, "results_cnn_kmnist_tr2.pt")
+    torch.save(result_dict, args.save_file)
