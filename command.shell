@@ -1,1 +1,1 @@
-python double_desc.py --num_epochs=10 --net cnn --dataset kmnist
+python double_desc.py --num_epochs=10 --net cnn --dataset kmnist --save_file results_cnn_kmnist_tn2.pt

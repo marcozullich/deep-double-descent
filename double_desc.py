@@ -13,7 +13,7 @@ def get_width_schedule(parallel_train, max_width, jump=25):
     #     widths = torch.cat([widths, torch.linspace(100, (max_width//jump) * jump, seq_size)])
     #     if max_width % jump > 0:
     #         widths =  torch.cat([widths, max_width])
-    widths = torch.linspace(1, 512, 125)
+    widths = torch.linspace(1, 200, 100)
     return widths.split(parallel_train)
     
 

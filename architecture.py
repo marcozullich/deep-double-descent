@@ -39,15 +39,15 @@ class CNN(nn.Module):
 
         module = [self.get_module(in_channels, width, bias=True, activation=activation, batch_norm=batch_norm, padding=conv_padding, max_pool=(1 % max_pool_each == 0))]
 
-        module += [self.get_module(width, width, bias=True, activation=activation, batch_norm
-        =batch_norm, padding=conv_padding, max_pool=((index + 2) % max_pool_each == 0)) for index in range(num_modules - 1)]
+        module += [self.get_module(width*(index-1), width*(index), bias=True, activation=activation, batch_norm
+        =batch_norm, padding=conv_padding, max_pool=(index % max_pool_each == 0)) for index in range(2, num_modules + 1)]
 
         self.conv = nn.Sequential(*module)
 
         self.classification = nn.Sequential(
             nn.AdaptiveAvgPool2d(output_size=(1,1)),
             nn.Flatten(),
-            nn.Linear(width, num_classes)
+            nn.Linear(width*num_modules, num_classes)
         )
     
     def forward(self, x):
